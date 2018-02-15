@@ -245,5 +245,98 @@ namespace LongMathTest
 
 		    Assert.IsTrue(Calculator.IsMore(number1, number2));
 	    }
+
+	    [TestMethod]
+	    public void IsMore_RightGreaterThanLeft_False()
+	    {
+		    BigNumber number1 = new BigNumber("6666666666");
+		    BigNumber number2 = new BigNumber("123");
+
+		    Assert.IsFalse(Calculator.IsMore(number2, number1));
+	    }
+
+	    [TestMethod]
+	    public void IsMore_Equals_False()
+	    {
+		    BigNumber number1 = new BigNumber("6666666666");
+		    BigNumber number2 = number1;
+
+		    Assert.IsFalse(Calculator.IsMore(number2, number1));
+	    }
+
+	    [TestMethod]
+	    public void IsMore_SameSizeLeftGreater_True()
+	    {
+		    BigNumber number1 = new BigNumber("6666666666");
+		    BigNumber number2 = new BigNumber("6666666665");
+
+		    Assert.IsFalse(Calculator.IsMore(number2, number1));
+	    }
+
+	    [TestMethod]
+	    public void Divider_TwoLargeNumbers_CorrectAnswer()
+	    {
+		    BigNumber number1 = new BigNumber("59756398587357693474");
+		    BigNumber number2 = new BigNumber("6666666666");
+		    string correctAnswer = "8963459789";
+
+		    BigNumber number3 = Calculator.Divider(number1, number2);
+
+		    Assert.AreEqual(number3.ToString(), correctAnswer);
+		}
+
+	    [TestMethod]
+	    public void Divider_LeftZeroNumbers_Zero()
+	    {
+		    BigNumber number1 = new BigNumber("0");
+		    BigNumber number2 = new BigNumber("6666666666");
+		    string correctAnswer = "0";
+
+		    BigNumber number3 = Calculator.Divider(number1, number2);
+
+		    Assert.AreEqual(number3.ToString(), correctAnswer);
+	    }
+
+		[TestMethod]
+	    [ExpectedException(typeof(DivideByZeroException))]
+		public void Divider_DivideByZero_DivideByZeroException()
+	    {
+		    BigNumber number1 = new BigNumber("59756398587357693474");
+		    BigNumber number2 = new BigNumber("0");
+
+		    Calculator.Divider(number1, number2);
+	    }
+
+	    [TestMethod]
+	    [ExpectedException(typeof(ArgumentNullException))]
+		public void Divider_NullRightArgument_Exception()
+	    {
+		    BigNumber number1 = new BigNumber("59756398587357693474");
+		    BigNumber number2 = null;
+
+		    Calculator.Divider(number1, number2);
+	    }
+
+	    [TestMethod]
+	    [ExpectedException(typeof(ArgumentNullException))]
+		public void Divider_NullLeftArgument_Exception()
+	    {
+		    BigNumber number1 = new BigNumber("59756398587357693474");
+		    BigNumber number2 = null;
+
+		    Calculator.Divider(number1, number2);
+	    }
+
+	    [TestMethod]
+	    public void Multiply_LeftZeroNumbers_Zero()
+	    {
+		    BigNumber number1 = new BigNumber("0");
+		    BigNumber number2 = new BigNumber("6666666666");
+		    string correctAnswer = "0";
+
+		    BigNumber number3 = Calculator.Divider(number1, number2);
+
+		    Assert.AreEqual(number3.ToString(), correctAnswer);
+	    }
 	}
 }

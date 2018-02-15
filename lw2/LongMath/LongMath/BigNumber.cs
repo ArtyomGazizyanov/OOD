@@ -14,20 +14,9 @@ namespace LongMath
 		{
 		}
 
-		public BigNumber(int number)
-		{
-			int rest = number % 10;
-			while (rest != 0)
-			{
-				Digits.Add(rest);
-				rest = number % 10;
-			}
-		}
-
 		public BigNumber(List<int> digits, bool isPositive = true)
 		{
-			Digits = digits;
-			//CleanZeros();
+			Digits = digits ?? throw new ArgumentNullException("Parameter shouldn`t be null");
 			IsPositive = isPositive;
 		}
 
@@ -54,7 +43,6 @@ namespace LongMath
 
 			    Digits.Add(ConvertCharToDigit(digit));
 		    }
-		    //CleanZeros();
 	    }
 
 		public override string ToString()
@@ -84,13 +72,8 @@ namespace LongMath
 			return Calculator.Multiply(number1, number2);
 			
 		}
-		public static BigNumber operator *(BigNumber ln, byte b)
-		{
-			return Calculator.Multiply(ln, b);
-		}
 		public static BigNumber operator /(BigNumber number1, BigNumber number2)
 		{
-			//return Calculator.Divide(number1, number2);
 			return Calculator.Divider(number1, number2);
 		}
 		public static bool operator ==(BigNumber number1, BigNumber number2)
@@ -130,22 +113,9 @@ namespace LongMath
 			}
 		}
 
-		private char GeSign()
-		{
-			return IsPositive ? '+' : '-';
-		}
-
 		private int ConvertCharToDigit(char symbol)
 		{
 			return (int)Char.GetNumericValue(symbol);
-		}
-
-		private void CleanZeros()
-		{
-			while (Digits.Count > 0 && Digits[0] == 0)
-			{
-				Digits.RemoveAt(0);
-			}
 		}
 	}
 }

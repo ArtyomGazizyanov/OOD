@@ -183,6 +183,19 @@ namespace LongMath
 
 		public static BigNumber Divider(BigNumber left, BigNumber right)
 		{
+			if (left?.Digits == null || right?.Digits == null)
+			{
+				throw new ArgumentNullException();
+			}
+			if (left.Digits.TrueForAll(m => m == 0))
+			{
+				return new BigNumber("0");
+			}
+			if (right.Digits.TrueForAll(m => m == 0))
+			{
+				throw new DivideByZeroException();
+			}
+
 			BigNumber result = new BigNumber();
 			BigNumber tmp2 = new BigNumber(); ;
 			while (tmp2 < left || tmp2 == left)
@@ -201,15 +214,5 @@ namespace LongMath
 			}
 			return result;
 		}
-		
-		public static BigNumber Multiply(BigNumber ln, byte b)
-		{
-			var intList = b.ToString().Select(x => Convert.ToInt32(x.ToString())).ToList();
-			intList.Reverse();
-
-			BigNumber number = new BigNumber(intList);
-			return Multiply(ln, number);
-		}
-
 	}
 }

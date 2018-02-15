@@ -10,8 +10,6 @@ namespace LongMath
 			BigNumber number2 = new BigNumber("6666666666");
 			var number3 = number1 / number2;
 			Console.WriteLine(number3.ToString());
-			//Console.WriteLine(number3.First.ToString());
-			//Console.WriteLine(number3.Second.ToString());
          }
     }
 }

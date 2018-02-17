@@ -19,8 +19,5 @@ double CTriangle::GetPerimeter() const
 
 double CTriangle::GetSquare() const
 {
-	int a = (m_p1.GetX() - m_p3.GetX()) * (m_p1.GetY() - m_p3.GetY());
-	int b = (m_p2.GetX() - m_p3.GetX()) * (m_p2.GetY() - m_p3.GetY());
-	
-	return (a-b) * 0.5;
+	return 0.5 * (((m_p1.GetX() - m_p3.GetX()) * (m_p2.GetY() - m_p3.GetY())) - ((m_p2.GetX() - m_p3.GetX()) * (m_p1.GetY() - m_p3.GetY())));
 }

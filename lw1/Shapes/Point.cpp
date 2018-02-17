@@ -26,7 +26,7 @@ int Point::GetY() const
 Point& Point::operator=(Point & p)
 {
 	m_x = p.GetX();
-	m_y = p.GetX();
+	m_y = p.GetY();
 
 	return *this;
 }

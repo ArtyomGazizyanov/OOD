@@ -7,6 +7,40 @@ namespace LongMath
 {
 	public class BigNumber
 	{
+		public bool EqualsDigits(BigNumber other)
+		{
+			if (other.Digits.Count != Digits.Count)
+			{
+				return false;
+			}
+
+			for (int i = 0; i < other.Digits.Count; ++i)
+			{
+				if (other.Digits[i] != Digits[i])
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			if (obj.GetType() != this.GetType()) return false;
+			return Equals((BigNumber) obj);
+		}
+
+		public override int GetHashCode()
+		{
+			unchecked
+			{
+				return ((Digits != null ? Digits.GetHashCode() : 0) * 397) ^ IsPositive.GetHashCode();
+			}
+		}
+
 		public List<int> Digits { get; } = new List<int>();
 		public bool IsPositive { get; private set; } = true;
 
@@ -54,12 +88,16 @@ namespace LongMath
 
 		public override string ToString()
 		{
-			List<int> digitCopy = Digits;
-			digitCopy.Reverse();
+			/*int[] digitCopyArray = { };
+			Digits.CopyTo(digitCopyArray);
+			List<int> digitCopy = digitCopyArray.ToList();*/
+
+			//digitCopy.Reverse();
+
 			string resultString = String.Empty;
-			foreach (var digit in digitCopy)
+			for (int i = Digits.Count - 1; i >= 0; --i)
 			{
-				resultString += digit;
+				resultString += Digits[i];
 			}
 			
 			return resultString;
@@ -136,16 +174,19 @@ namespace LongMath
 		public BigNumber Sqrt()
 		{
 			BigNumber l = new BigNumber("0");
-			BigNumber r = new BigNumber(this);
-			BigNumber res = new BigNumber(this);
+			BigNumber r = new BigNumber(Digits);
+			BigNumber res = this;
 			BigNumber oneNumber = new BigNumber("1");
-
+			BigNumber oneNumber2 = new BigNumber("1");
+			if (oneNumber2 == oneNumber)
+			{
+				Console.WriteLine("eq");
+			}
 			while (l == r || l < r)
 			{
 				BigNumber m = (l + r) / 2;
 				BigNumber squareM = Calculator.Pow(m, 2);
-				//squareM.Digits.Reverse();
-				if (squareM.Digits.Equals(Digits) /*|| squareM < this*/)
+				if (EqualsDigits(squareM) || squareM < this)
 				{
 					res = m;
 					l = m + oneNumber;
@@ -154,35 +195,7 @@ namespace LongMath
 					r = m - oneNumber;
 			}
 
-			return res;
-		}
-		public BigNumber Sqrta()
-		{
-			BigNumber cur = this;
-			// максимальное количество разрядов в ответе
-			int pos = (Digits.Count + 1) / 2;
-			//cur.amount = pos;
-			pos--;
-			while (pos >= 0)
-			{
-				int l = 0, r = 2;
-				int curDigit = 0;
-				while (l <= r) // подбираем текущую цифру
-				{
-					int m = (l + r) >> 1;
-					cur.Digits[pos] = m;
-					if (cur * cur <= this)
-					{
-						curDigit = m;
-						l = m + 1;
-					}
-					else
-						r = m - 1;
-				}
-				cur.Digits[pos] = curDigit;
-				pos--;
-			}
-			return cur;
+			return res + oneNumber;
 		}
 		private bool IsSign(char symbol)
 		{

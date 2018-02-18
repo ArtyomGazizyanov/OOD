@@ -167,7 +167,19 @@ namespace LongMath
 			{
 				return false;
 			}
+			if (number1?.Digits.Count != number2?.Digits.Count)
+			{
+				return false;
+			}
 
+			/*for (int i = 0; i < number1.Digits.Count; ++i)
+			{
+				if (number1.Digits[i] != number2.Digits[i])
+				{
+					return false;
+				}
+			}
+			return true;*/
 			return number1.Digits.Equals(number2.Digits);
 		}
 
@@ -226,7 +238,10 @@ namespace LongMath
 					tmp = right* multiplier;
 				}
 				tmp2 = tmp2 + right* previousMultiplier;
-				result = result + previousMultiplier;
+				//if (tmp2 <= left)
+				//{
+					result = result + previousMultiplier;
+				//}
 			}
 			return result;
 		}

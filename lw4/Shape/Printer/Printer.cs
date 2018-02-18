@@ -15,8 +15,8 @@ namespace Shape.Creators
 				foreach (var shape in collection)
 				{
 					output.WriteLine(shape.GetName());
-					output.WriteLine($"Perimeter = {shape.GetPerimeter().ToString()}");
 					output.WriteLine($"Square = {shape.GetSquare().ToString()}");
+					output.WriteLine($"Perimeter = {shape.GetPerimeter().ToString()}");
 					output.WriteLine();
 				}
 			}

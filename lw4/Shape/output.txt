@@ -1,0 +1,16 @@
+CIRCLE
+Square = 3141592653
+Perimeter = 62831
+
+RECTANGLE
+Square = 200000000
+Perimeter = 60000
+
+TRIANGLE
+Square = 600000000
+Perimeter = 120000
+
+TRIANGLE
+Square = 0
+Perimeter = 848
+

@@ -9,7 +9,8 @@ namespace Shape
 	    private static CircleCreator _instance;
 
 	    private CircleCreator()
-	    { }
+	    {
+	    }
 
 	    public static CircleCreator GetInstance()
 	    {

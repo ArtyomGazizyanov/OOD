@@ -177,11 +177,6 @@ namespace LongMath
 			BigNumber r = new BigNumber(Digits);
 			BigNumber res = this;
 			BigNumber oneNumber = new BigNumber("1");
-			BigNumber oneNumber2 = new BigNumber("1");
-			if (oneNumber2 == oneNumber)
-			{
-				Console.WriteLine("eq");
-			}
 			while (l == r || l < r)
 			{
 				BigNumber m = (l + r) / 2;
@@ -195,7 +190,12 @@ namespace LongMath
 					r = m - oneNumber;
 			}
 
-			return res + oneNumber;
+			if (res.Digits.Count > 1 && res.Digits[0] != 0)
+			{
+				res = res + oneNumber;
+			}
+
+			return res;
 		}
 		private bool IsSign(char symbol)
 		{

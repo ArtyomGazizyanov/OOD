@@ -13,7 +13,13 @@ namespace Shape
 		    Y = new BigNumber(y.ToString());
 	    }
 
-	    public Point()
+	    public Point(string x, string y)
+	    {
+		    X = new BigNumber(x.ToString());
+		    Y = new BigNumber(y.ToString());
+	    }
+
+		public Point()
 	    {
 		    X = new BigNumber("0");
 		    Y = new BigNumber("0");

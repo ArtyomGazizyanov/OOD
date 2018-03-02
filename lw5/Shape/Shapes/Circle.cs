@@ -38,7 +38,7 @@ namespace Shape
 
 	    public override void Accept(IShapeVisitor visitor)
 	    {
-		    
+		    visitor.VisitShape(this);
 	    }
 	}
 }

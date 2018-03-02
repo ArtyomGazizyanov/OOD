@@ -37,7 +37,7 @@ namespace Shape
 				{
 					tokens = restString.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-					Point point = new Point(Convert.ToInt32(tokens[0]), Convert.ToInt32(tokens[1]));
+					Point point = new Point(tokens[0], tokens[1]);
 					BigNumber radius = new BigNumber(tokens[2]);
 
 					shapes.Add(CircleCreator.GetInstance().Create(point, radius));
@@ -47,9 +47,9 @@ namespace Shape
 				{
 					tokens = restString.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-					Point point1 = new Point(Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2]));
-					Point point2 = new Point(Convert.ToInt32(tokens[4]), Convert.ToInt32(tokens[5]));
-					Point point3 = new Point(Convert.ToInt32(tokens[7]), Convert.ToInt32(tokens[8]));
+					Point point1 = new Point(tokens[1], tokens[2]);
+					Point point2 = new Point(tokens[4], tokens[5]);
+					Point point3 = new Point(tokens[7], tokens[8]);
 
 					shapes.Add(TriangleCreator.GetInstance().Create(point1, point2, point3));
 				}
@@ -58,8 +58,8 @@ namespace Shape
 				{
 					tokens = restString.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-					Point point1 = new Point(Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2]));
-					Point point2 = new Point(Convert.ToInt32(tokens[4]), Convert.ToInt32(tokens[5]));
+					Point point1 = new Point(tokens[1], tokens[2]);
+					Point point2 = new Point(tokens[4], tokens[5]);
 
 					shapes.Add(RectangleCreator.GetInstance().Create(point1, point2));
 				}
